@@ -11,11 +11,10 @@
 2. 拦截器配置 **mvc:interceptors** 配置,修改为自己的**认证拦截器**
 	
 	```xml
-<mvc:interceptors> 
-<bean class="com.jiyiren.mvnspdemo.interceptor.AuthorizeInterceptor"></bean>
-</mvc:interceptors>
+	<mvc:interceptors> 
+	<bean class="com.jiyiren.mvnspdemo.interceptor.AuthorizeInterceptor"></bean>
+	</mvc:interceptors>
 	```
-	
 3. Mybatis的 **typeAliasesPackage** 配置
 	
 	```xml
@@ -147,14 +146,12 @@
 > 5. 包内共享常量:即在当前包下单独的constant目录下。
 > 6. 类内共享常量:直接在类内部private static final定义
 > 7. 如果变量值仅在一个范围内变化，且带有名称之外的延伸属性，定义为枚举类。下面 正例中的数字就是延伸信息，表示星期几。
->	
-	```java
+	
 	public Enum 
 	{ MONDAY(1), TUESDAY(2), WEDNESDAY(3), 
 	  THURSDAY(4), FRIDAY(5), SATURDAY(6), 
 	  SUNDAY(7);
 	 }
-	```
 
 ### 工具包
 
