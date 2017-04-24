@@ -3,50 +3,69 @@
 ## 配置
 
 1. Spring组件扫描 **component-scan** 配置,修改为**自己项目的包名**
-`<context:component-scan base-package="com.jiyiren.mvnspdemo"></context:component-scan>`
-2. 拦截器配置 **mvc:interceptors** 配置,修改为自己的**认证拦截器**
+
 	```xml
-	<mvc:interceptors> 
+	<context:component-scan base-package="com.jiyiren.mvnspdemo"></context:component-scan>
+	```
+	
+2. 拦截器配置 **mvc:interceptors** 配置,修改为自己的**认证拦截器**
+	
+	```xml
+<mvc:interceptors> 
 <bean class="com.jiyiren.mvnspdemo.interceptor.AuthorizeInterceptor"></bean>
-</mvc:interceptors>```
+</mvc:interceptors>
+	```
+	
 3. Mybatis的 **typeAliasesPackage** 配置
-	`<property name="typeAliasesPackage" value="com.jiyiren.mvnspdemo.bean.domodel"></property>`
+	
+	```xml
+	<property name="typeAliasesPackage" value="com.jiyiren.mvnspdemo.bean.domodel"></property>
+	```
+	
 4. Mybatis的 **mapperLocations** 配置
-	`<property name="mapperLocations" value="classpath:com/jiyiren/mvnspdemo/mapping/*.xml"/>`
+	
+	```xml
+	<property name="mapperLocations" value="classpath:com/jiyiren/mvnspdemo/mapping/*.xml"/>
+	```
+	
 5. Mybatis的mapper包配置， 避免单独创建每一个mapper
-	<pre><code>\<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-\<property name="basePackage" value="com.jiyiren.mvnspdemo.dao" />
-\<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-\</bean></code></pre>
+
+	```xml	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	<property name="basePackage" value="com.jiyiren.mvnspdemo.dao" />
+	<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+	```
 6. 修改 **db-config.properties** ,指定正确的**数据库url**,**用户名**以及**密码**
 	* 连接池默认使用 **c3p0** , 如果要修改为其他，注意将 **pom.xml** 中的依赖移除
 	* 本例中的数据库结构为**mvndemosp.sql**,可通过mysql的source导入自己的数据库
 
-7. 若需要将log输出到文件，则修改 **log4j.properties** 文件为：	<pre><code>log4j.rootLogger = DEBUG, apconsole, apfile
-log4j.appender.apconsole = org.apache.log4j.ConsoleAppender
-log4j.appender.apconsole.Encoding=UTF-8
-log4j.appender.apconsole.Threshold=DEBUG
-log4j.appender.apconsole.Target=System.out
-log4j.appender.apconsole.ImmediateFlush=true
-log4j.appender.apconsole.layout = org.apache.log4j.PatternLayout
-log4j.appender.apconsole.layout.ConversionPattern=[%p] %-d{yyyy-MM-dd HH:mm:ss} [%l] %m%n
-\#
-log4j.appender.apfile = org.apache.log4j.DailyRollingFileAppender
-log4j.appender.apfile.Encoding=UTF-8
-\#这里默认用tomcat的环境变量输出到Tomcat的logs/mvndemosp.txt文件
-\#如果要指定自己的文件地址，则修改下面的值(绝对路径)
-log4j.appender.apfile.File=${catalina.home}/logs/mvndemosp.txt
-log4j.appender.apfile.Append=false
-log4j.appender.apfile.DatePattern='.'yyyyMMdd
-log4j.appender.apfile.layout = org.apache.log4j.PatternLayout
-log4j.appender.apfile.layout.ConversionPattern=[%p] %-d{yyyy-MM-dd HH:mm:ss} [%c] %m%n
-\#
-log4j.logger.org.springframework=ERROR
-log4j.logger.com.mchange=ERROR
-log4j.logger.org.apache=ERROR
-log4j.logger.org.quartz=ERROR
-</code></pre>
-
+7. 若需要将log输出到文件，则修改 **log4j.properties** 文件为：	
+	```xml
+	log4j.rootLogger = DEBUG, apconsole, apfile
+	log4j.appender.apconsole = org.apache.log4j.ConsoleAppender
+	log4j.appender.apconsole.Encoding=UTF-8
+	log4j.appender.apconsole.Threshold=DEBUG
+	log4j.appender.apconsole.Target=System.out
+	log4j.appender.apconsole.ImmediateFlush=true
+	log4j.appender.apconsole.layout = org.apache.log4j.PatternLayout
+	log4j.appender.apconsole.layout.ConversionPattern=[%p] %-d{yyyy-MM-	dd HH:mm:ss} [%l] %m%n
+	#
+	log4j.appender.apfile = org.apache.log4j.DailyRollingFileAppender
+	log4j.appender.apfile.Encoding=UTF-8
+	#这里默认用tomcat的环境变量输出到Tomcat的logs/mvndemosp.txt文件
+	#如果要指定自己的文件地址，则修改下面的值(绝对路径)
+	log4j.appender.apfile.File=${catalina.home}/logs/mvndemosp.txt
+	log4j.appender.apfile.Append=false
+	log4j.appender.apfile.DatePattern='.'yyyyMMdd
+	log4j.appender.apfile.layout = org.apache.log4j.PatternLayout
+	log4j.appender.apfile.layout.ConversionPattern=[%p] %-d{yyyy-MM-dd 	HH:mm:ss} [%c] %m%n
+	#
+	log4j.logger.org.springframework=ERROR
+	log4j.logger.com.mchange=ERROR
+	log4j.logger.org.apache=ERROR
+	log4j.logger.org.quartz=ERROR
+	```
 
 ## 建议说明：
 
