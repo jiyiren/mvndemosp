@@ -5,9 +5,10 @@
 1. Spring组件扫描 **component-scan** 配置,修改为**自己项目的包名**
 `<context:component-scan base-package="com.jiyiren.mvnspdemo"></context:component-scan>`
 2. 拦截器配置 **mvc:interceptors** 配置,修改为自己的**认证拦截器**
-	<pre><code>\<mvc:interceptors> 
-\<bean class="com.jiyiren.mvnspdemo.interceptor.AuthorizeInterceptor"></bean>
-\</mvc:interceptors></code></pre>
+	```xml
+	<mvc:interceptors> 
+<bean class="com.jiyiren.mvnspdemo.interceptor.AuthorizeInterceptor"></bean>
+</mvc:interceptors>```
 3. Mybatis的 **typeAliasesPackage** 配置
 	`<property name="typeAliasesPackage" value="com.jiyiren.mvnspdemo.bean.domodel"></property>`
 4. Mybatis的 **mapperLocations** 配置
@@ -133,23 +134,6 @@ SUNDAY(7);}</code></pre>
 > > 2. 建议以Helper后缀结尾，避免与其他包中的以后缀Utils结尾的工具类混淆
 	
 	
-
-
-
-<style> 
-h1,h2,h3{color:#02e2fb} 
-
-body{background-color:#1f3954}
-body{color:#fff}
-blockquote{color:#f08080}
-ol{color:#e66fba}
-span{color:#689aca}
-
-strong{color:#f6915d}
-a{color:#9acb9b}
-em{color:#fecb6e}
-</style>
-
 
 <div style="text-align:center;font-size: 12px;bottom:0;line-height:50px;">@<a href="http://jiyiren.github.io/">Ji Yi</a></div>
 
