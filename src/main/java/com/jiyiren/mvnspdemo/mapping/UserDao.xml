@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiyiren.mvnspdemo.dao.UserDao">
+	<resultMap type="com.jiyiren.mvnspdemo.bean.domodel.UserDO" id="UserDOResultMap">
+		<id property="id" column="id" jdbcType="BIGINT"/>
+		<result property="userName" column="user_name" jdbcType="VARCHAR"/>
+		<result property="passWord" column="pass_word" jdbcType="VARCHAR"/>
+		<result property="age" column="age" jdbcType="TINYINT"/>
+		<result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+		<result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<sql id="sql_user_content">
+		id,user_name,pass_word,age,create_time,update_time
+	</sql>
+
+	<!-- 返回值为Long型，对应数据库里的BIGINT -->
+	<select id="getUserIdByUserName" resultType="java.lang.Long">
+		select
+		id
+		from user
+		where user_name = #{userName}
+	</select>
+	
+	<!-- 自增主键可以在插入后自动返回id值 keyProperty="id" -->
+	<!-- 使用useGeneratedKeys="true" keyProperty="id"时必须以POJO类作为参数传入，
+		然后方法的返回值仍然为0或1,而自增的id获得是通过POJO.getId()获得的 -->
+	<insert id="saveUser">
+		insert into user (user_name,pass_word) 
+		values(#{userName},#{passWord})
+	</insert>
+	
+	<select id="getUser" resultMap="UserDOResultMap">
+		select
+		<include refid="sql_user_content"></include>
+		from user
+		where user_name= #{userName} and pass_word = #{passWord}
+	</select>
+	
+	<select id="getUserById" resultMap="UserDOResultMap">
+		select
+		<include refid="sql_user_content"></include>
+		from user
+		where id = #{userId}
+	</select>
+
+</mapper>

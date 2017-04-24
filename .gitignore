@@ -1,0 +1,28 @@
+# Intellij IDEA Project files
+.idea
+*.iml
+*.ipr
+*.iws
+out
+
+# Eclipse Project files
+.classpath
+.settings/
+.project
+.springBeans
+target/
+build/
+
+*.class
+bin/
+gen/
+local.properties
+
+.DS_Store
+Thumbs.db
+
+*.bak
+*.tem
+*.temp
+
+.log
